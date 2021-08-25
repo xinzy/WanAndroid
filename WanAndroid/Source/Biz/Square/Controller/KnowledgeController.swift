@@ -75,7 +75,7 @@ extension KnowledgeController {
     }
 
     private func setupView() {
-        view.backgroundColor = Colors.background
+        view.backgroundColor = Colors.backgroundPrimary
         
         view.addSubview(segmentedView)
         segmentedView.snp.makeConstraints { make in

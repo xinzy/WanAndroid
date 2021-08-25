@@ -56,7 +56,6 @@ extension FavorController: UITableViewDelegate {
 
     private func editItem() {
         let controller = EditFavorController()
-//        present(controller, animated: true, completion: nil)
-        controller.presentOverlay(from: self)
+        controller.presentSheet(from: self)
     }
 }

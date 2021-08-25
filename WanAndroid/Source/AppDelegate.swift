@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.overrideUserInterfaceStyle = ThemeManager.shared.currentTheme
         }
         window?.rootViewController = MainViewController()
-        window?.backgroundColor = Colors.background
+        window?.backgroundColor = Colors.backgroundPrimary
         window?.makeKeyAndVisible()
         return true
     }

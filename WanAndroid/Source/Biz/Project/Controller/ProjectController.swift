@@ -16,7 +16,7 @@ class ProjectController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = Colors.background
+        view.backgroundColor = Colors.backgroundPrimary
         setupView()
         bindAction()
         viewModel.load()
@@ -34,7 +34,7 @@ class ProjectController: UIViewController {
         dataSource.titleSelectedFont = .font(ofSize: 16, type: .semibold)
         dataSource.titleNormalFont = .font(ofSize: 14)
         dataSource.titleSelectedColor = Colors.red_600
-        dataSource.titleNormalColor = Colors.textHint
+        dataSource.titleNormalColor = Colors.textInfo
         dataSource.isItemSpacingAverageEnabled = false
         return dataSource
     }()
@@ -46,7 +46,6 @@ class ProjectController: UIViewController {
         indicator.indicatorColor = Colors.red_600
 
         let view = JXSegmentedView()
-        view.backgroundColor = Colors.cell
         view.dataSource = dataSource
         view.indicators = [indicator]
         view.listContainer = containerView

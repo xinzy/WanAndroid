@@ -20,7 +20,7 @@ class SquareController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = Colors.background
+        view.backgroundColor = Colors.backgroundPrimary
         setupView()
     }
 
@@ -37,7 +37,7 @@ class SquareController: UIViewController {
         dataSource.titleSelectedFont = .font(ofSize: 16, type: .semibold)
         dataSource.titleNormalFont = .font(ofSize: 16)
         dataSource.titleSelectedColor = Colors.red_600
-        dataSource.titleNormalColor = Colors.textHint
+        dataSource.titleNormalColor = Colors.textInfo
         dataSource.titles = itemConfigs.map { $0.0 }
         return dataSource
     }()

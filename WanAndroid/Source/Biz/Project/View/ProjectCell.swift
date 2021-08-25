@@ -33,7 +33,7 @@ class ProjectCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
         backgroundColor = .clear
-        contentView.backgroundColor = Colors.cell
+        contentView.backgroundColor = .clear
 
         setupView()
     }

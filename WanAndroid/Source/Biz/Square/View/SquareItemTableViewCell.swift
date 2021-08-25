@@ -24,7 +24,7 @@ class SquareItemParentTableViewCell: UITableViewCell {
 
     private func setupView() {
         backgroundColor = .clear
-        contentView.backgroundColor = Colors.cell
+        contentView.backgroundColor = .clear
 
         contentView.addSubview(separatorView)
         separatorView.snp.makeConstraints { make in
@@ -44,7 +44,7 @@ class SquareItemParentTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        contentView.backgroundColor = selected ? Colors.background : Colors.cell
+        contentView.backgroundColor = selected ? Colors.backgroundSecondary : .clear
     }
 
     required init?(coder: NSCoder) {
@@ -82,7 +82,7 @@ class SquareItemChildrenTableViewCell: UITableViewCell {
     }
 
     private func setupView() {
-        contentView.backgroundColor = Colors.cell
+        contentView.backgroundColor = .clear
         backgroundColor = .clear
 
         contentView.addSubview(separatorView)

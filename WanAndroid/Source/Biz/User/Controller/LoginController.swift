@@ -84,7 +84,7 @@ extension LoginController: AutoDisposed {
     }
 
     private func setupView() {
-        view.backgroundColor = Colors.background
+        view.backgroundColor = Colors.backgroundPrimary
         navigationItem.rightBarButtonItem = closeItem
 
         view.addSubview(usernameField)

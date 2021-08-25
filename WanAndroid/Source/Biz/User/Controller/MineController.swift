@@ -17,7 +17,7 @@ class MineController: FormViewController {
         super.viewDidLoad()
 
         fd_prefersNavigationBarHidden = true
-        view.backgroundColor = Colors.background
+        view.backgroundColor = Colors.backgroundSecondary
         setupView()
     }
 

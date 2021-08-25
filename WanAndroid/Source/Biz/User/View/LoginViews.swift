@@ -65,7 +65,7 @@ class LogoutButton: UIView {
 
     private lazy var button: UIButton = {
         let button = UIButton()
-        button.backgroundColor = Colors.cell
+        button.backgroundColor = Colors.backgroundPrimary
         button.setTitle("退出登录", for: .normal)
         button.setTitleColor(Colors.red_600, for: .normal)
         return button

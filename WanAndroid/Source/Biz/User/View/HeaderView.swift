@@ -80,7 +80,7 @@ class HeaderWrapperView: UIView {
     init() {
         let frame = CGRect(x: 0, y: 0, width: ScreenWidth, height: statusBarHeight + 72)
         super.init(frame: frame)
-        backgroundColor = Colors.cell
+        backgroundColor = Colors.backgroundPrimary
         addSubview(headerView)
     }
 

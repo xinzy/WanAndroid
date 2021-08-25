@@ -9,28 +9,23 @@ import UIKit
 import SnapKit
 import Commons
 
-class EditFavorController: UIViewController, OverlayHost {
+class EditFavorController: SheetViewController {
 
-    var overlaySize: CGSize? = CGSize(width: 320, height: 320)
-
+    override var controllerHeight: CGFloat { 320 }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        view.backgroundColor = .black.withAlphaComponent(0.3)
         view.addSubview(mainView)
         mainView.snp.makeConstraints { make in
-//            make.leading.trailing.equalToSuperview()
-//            make.height.equalTo(320)
-//            make.centerY.equalToSuperview()
             make.edges.equalToSuperview()
         }
     }
 
     private lazy var mainView: UIView = UIControl().then {
-        $0.backgroundColor = Colors.background
+        $0.backgroundColor = Colors.backgroundPrimary
         $0.cornerRadius(12)
         $0.shadow(Colors.textPrimary, radius: 5)
-        $0.action = { self.dismissOverlay() }
+        $0.action = { self.dismiss(animated: true, completion: nil) }
     }
 }

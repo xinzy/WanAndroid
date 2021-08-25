@@ -44,17 +44,17 @@ public class ThemeButton: UIButton {
             backgroundColor = Colors.textHint
             setTitleColor(Colors.textPrimary, for: .normal)
         case .whiteBlue:
-            backgroundColor = Colors.background
+            backgroundColor = Colors.backgroundPrimary
             setTitleColor(Colors.blue_600, for: .normal)
             layer.borderWidth = 1
             layer.borderColor = Colors.blue_600.cgColor
         case .whiteBlack:
-            backgroundColor = Colors.background
+            backgroundColor = Colors.backgroundPrimary
             setTitleColor(Colors.textPrimary, for: .normal)
             layer.borderWidth = 1
             layer.borderColor = Colors.textPrimary.cgColor
         case .clearBlue:
-            backgroundColor = Colors.background
+            backgroundColor = Colors.backgroundPrimary
             setTitleColor(Colors.blue_600, for: .normal)
         case .grayBlack:
             backgroundColor = Colors.separator

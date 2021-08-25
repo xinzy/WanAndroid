@@ -35,71 +35,8 @@ public extension UIViewController {
     }
 }
 
-
 public extension UIViewController {
-    private struct PopAssociatedKey {
-        static var keyInteractivePopDisabled = "interactivePopDisabled"
-        static var keyPrefersNavigationBarHidden = "prefersNavigationBarHidden"
-        static var keyInteractivePopMaxAllowedInitialDistanceToLeftEdge = "interactivePopMaxAllowedInitialDistanceToLeftEdge"
-    }
-
-    var interactivePopDisabled: Bool {
-        get {
-            objc_getAssociatedObject(self, &PopAssociatedKey.keyInteractivePopDisabled) as? Bool ?? true
-        }
-        set {
-            objc_setAssociatedObject(self, &PopAssociatedKey.keyInteractivePopDisabled, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        }
-    }
-
-    var prefersNavigationBarHidden: Bool {
-        get {
-            objc_getAssociatedObject(self, &PopAssociatedKey.keyPrefersNavigationBarHidden) as? Bool ?? false
-        }
-        set {
-            objc_setAssociatedObject(self, &PopAssociatedKey.keyPrefersNavigationBarHidden, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        }
-    }
-
-    var interactivePopMaxAllowedInitialDistanceToLeftEdge: CGFloat {
-        get {
-            objc_getAssociatedObject(self, &PopAssociatedKey.keyPrefersNavigationBarHidden) as? CGFloat ?? 0
-        }
-        set {
-            objc_setAssociatedObject(self, &PopAssociatedKey.keyPrefersNavigationBarHidden, max(newValue, 0), .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        }
-    }
 }
 
 public extension UINavigationController {
-    private struct PopAssociatedKey {
-        static var keyFullscreenPopGestureRecognizer = "fullscreenPopGestureRecognizer"
-        static var keyViewControllerBasedNavigationBarAppearanceEnabled = "viewControllerBasedNavigationBarAppearanceEnabled"
-    }
-
-
-    var fullscreenPopGestureRecognizer: UIPanGestureRecognizer {
-        if let recognizer = objc_getAssociatedObject(self, &PopAssociatedKey.keyFullscreenPopGestureRecognizer) as? UIPanGestureRecognizer {
-            return recognizer
-        }
-        let recognizer = UIPanGestureRecognizer()
-        recognizer.maximumNumberOfTouches = 1
-        objc_setAssociatedObject(self, &PopAssociatedKey.keyFullscreenPopGestureRecognizer, recognizer, .OBJC_ASSOCIATION_COPY_NONATOMIC)
-        return recognizer
-    }
-
-    var viewControllerBasedNavigationBarAppearanceEnabled: Bool {
-        get {
-            objc_getAssociatedObject(self, &PopAssociatedKey.keyViewControllerBasedNavigationBarAppearanceEnabled) as? Bool ?? true
-        }
-        set {
-            objc_setAssociatedObject(self, &PopAssociatedKey.keyViewControllerBasedNavigationBarAppearanceEnabled, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC)
-        }
-    }
-}
-
-private class FullscreenPopGestureRecognizerDelegate: NSObject, UIGestureRecognizerDelegate {
-    weak var navigationController: UINavigationController?
-
-    
 }

@@ -94,7 +94,7 @@ extension RegisterController {
     }
 
     private func setupView() {
-        view.backgroundColor = Colors.background
+        view.backgroundColor = Colors.backgroundPrimary
 
         view.addSubview(usernameField)
         usernameField.snp.makeConstraints { make in

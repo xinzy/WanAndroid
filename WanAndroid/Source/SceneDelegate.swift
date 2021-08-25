@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: scence)
         window?.overrideUserInterfaceStyle = ThemeManager.shared.currentTheme
         window?.frame = ScreenBounds
-        window?.backgroundColor = Colors.background
+        window?.backgroundColor = Colors.backgroundPrimary
         window?.rootViewController = MainViewController()
         window?.makeKeyAndVisible()
     }

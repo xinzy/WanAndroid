@@ -29,7 +29,7 @@ class MineBaseListController<T: HandyJSON, VM: MineBaseListViewModel<T>>: UIView
     }
 
     private func setupView() {
-        view.backgroundColor = Colors.background
+        view.backgroundColor = Colors.backgroundPrimary
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()

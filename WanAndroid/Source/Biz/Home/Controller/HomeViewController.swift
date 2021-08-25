@@ -15,7 +15,7 @@ class HomeViewController: UIViewController, AutoDisposed {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = Colors.background
+        view.backgroundColor = Colors.backgroundPrimary
         setupView()
         bindAction()
         tableView.refresh()

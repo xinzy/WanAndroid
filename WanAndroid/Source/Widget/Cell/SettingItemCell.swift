@@ -35,7 +35,7 @@ class SettingItemLabelCell: Cell<String>, CellType {
 
     private func setupView() {
         backgroundColor = .clear
-        contentView.backgroundColor = Colors.cell
+        contentView.backgroundColor = Colors.backgroundPrimary
 
         contentView.addSubview(icon)
         icon.snp.makeConstraints { make in
@@ -149,7 +149,7 @@ class SettingItemSwitchCell: Cell<Bool>, CellType {
 
     private func setupView() {
         backgroundColor = .clear
-        contentView.backgroundColor = Colors.cell
+        contentView.backgroundColor = Colors.backgroundPrimary
 
         contentView.addSubview(icon)
         icon.snp.makeConstraints { make in
@@ -263,7 +263,7 @@ class SettingThemeSelectorCell: Cell<UIUserInterfaceStyle>, CellType {
 
     private func setupView() {
         backgroundColor = .clear
-        contentView.backgroundColor = Colors.cell
+        contentView.backgroundColor = Colors.backgroundPrimary
 
         contentView.addSubview(stackView)
         stackView.snp.makeConstraints { make in
@@ -278,7 +278,6 @@ class SettingThemeSelectorCell: Cell<UIUserInterfaceStyle>, CellType {
 
     let stackView: UIStackView = {
         let view = UIStackView()
-        view.backgroundColor = Colors.cell
         view.axis = .vertical
         view.alignment = .fill
         view.distribution = .fillEqually

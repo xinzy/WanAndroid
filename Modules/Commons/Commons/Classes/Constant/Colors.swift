@@ -16,10 +16,10 @@ public struct Colors {
     public static var separator: UIColor { color("separator") }
 
     /// 背景色
-    public static var background: UIColor { color("background") }
+    public static var backgroundPrimary: UIColor { color("backgroundPrimary") }
 
     /// Cell 背景色
-    public static var cell: UIColor { color("cell") }
+    public static var backgroundSecondary: UIColor { color("backgroundSecondary") }
 
     /// 标题颜色
     public static var textPrimary: UIColor { color("textPrimary") }
@@ -100,7 +100,7 @@ public struct Colors {
     public static var brand_600: UIColor { color("brand_600") }
 
     // light: #E1F9FA dark: #233738
-    public static var cyan_100: UIColor { color("cyan_500") }
+    public static var cyan_100: UIColor { color("cyan_100") }
 
     // light: #00D1D9 dark: #5DC3C6
     public static var cyan_500: UIColor { color("cyan_500") }
@@ -124,7 +124,7 @@ public struct Colors {
     public static var orange_500: UIColor { color("orange_500") }
 
     // light: #FF8C00 dark: #F2AF6C
-    public static var orange_600: UIColor {  color("purple_100") }
+    public static var orange_600: UIColor { color("orange_600") }
 
     // light: #F2F0FD dark: #343146
     public static var purple_100: UIColor { color("purple_100") }

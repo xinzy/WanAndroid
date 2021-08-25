@@ -40,7 +40,7 @@ class SettingController: FormViewController {
 extension SettingController {
 
     private func setupView() {
-        view.backgroundColor = Colors.background
+        view.backgroundColor = Colors.backgroundPrimary
         tableView.separatorStyle = .none
 
         form +++ Section()
