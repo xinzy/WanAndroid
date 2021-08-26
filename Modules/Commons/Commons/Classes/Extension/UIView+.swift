@@ -116,7 +116,7 @@ public extension UIView {
         layer.borderColor = borderColor.cgColor
     }
 
-    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner = [.allCorners]) {
+    func cornerRadii(_ radius: CGFloat, corners: UIRectCorner = [.allCorners]) {
         let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
         let layer = CAShapeLayer()
         layer.frame = bounds

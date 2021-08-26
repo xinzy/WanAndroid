@@ -64,8 +64,12 @@ extension MineController {
                 row.tipText = ""
             })
             .onCellSelection { [weak self] _, _ in
-                guard let `self` = self, User.me.isLogin else { return }
-                ScoreHistoryController.showController(self.navigationController)
+                guard let `self` = self else { return }
+                if User.me.isLogin {
+                    ScoreHistoryController.showController(self.navigationController)
+                } else {
+                    self.login()
+                }
             }
             <<< SettingItemLabelRow("Rank", { row in
                 row.iconImage = .iconMineRank
@@ -73,19 +77,35 @@ extension MineController {
                 row.tipText = ""
             })
             .onCellSelection { [weak self] _, _ in
-                guard let `self` = self, User.me.isLogin else { return }
-                RankController.showController(self.navigationController)
+                guard let `self` = self else { return }
+                if User.me.isLogin {
+                    RankController.showController(self.navigationController)
+                } else {
+                    self.login()
+                }
             }
             <<< SettingItemLabelRow("Favor", { row in
                 row.iconImage = .iconMineFavor
                 row.titleText = "我的收藏"
             })
             .onCellSelection { [weak self] _, _ in
-                guard let `self` = self, User.me.isLogin else { return }
-                FavorController.showController(self.navigationController)
+                guard let `self` = self else { return }
+                if User.me.isLogin {
+                    FavorController.showController(self.navigationController)
+                } else {
+                    self.login()
+                }
             }
 
             +++ Section()
+            <<< SettingItemLabelRow("Message", { row in
+                row.iconImage = .iconMineMessage
+                row.titleText = "消息"
+            })
+            .onCellSelection { [weak self] _, _ in
+                guard let `self` = self else { return }
+                TestOverlayController().present(from: self, animated: true)
+            }
             <<< SettingItemLabelRow("Setting", { row in
                 row.iconImage = .iconMineSetting
                 row.titleText = "设置"

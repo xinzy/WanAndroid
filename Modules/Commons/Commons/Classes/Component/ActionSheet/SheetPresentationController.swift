@@ -10,6 +10,7 @@ import UIKit
 public class SheetPresentationController: UIPresentationController {
 
     public var sheetHeight: CGFloat = 0
+    public var dismissWhenTouchOutside: Bool = true
 
     public override var frameOfPresentedViewInContainerView: CGRect {
         CGRect(x: 0, y: ScreenHeight - sheetHeight, width: ScreenWidth, height: sheetHeight)
@@ -40,12 +41,17 @@ public class SheetPresentationController: UIPresentationController {
         }
     }
 
-    private lazy var backgroundView: UIView = {
-        let view = UIView()
-        if let bounds = containerView?.bounds {
-            view.frame = bounds
+    @objc private func onBackgroundClick() {
+        if dismissWhenTouchOutside {
+            presentedViewController.dismiss(animated: true, completion: nil)
         }
+    }
+
+    private lazy var backgroundView: UIControl = {
+        let view = UIControl()
+        view.frame = containerView?.bounds ?? ScreenBounds
         view.backgroundColor = .black.withAlphaComponent(0.35)
+        view.addTarget(self, action: #selector(onBackgroundClick), for: .touchUpInside)
         return view
     }()
 }

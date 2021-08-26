@@ -55,7 +55,25 @@ extension FavorController: UITableViewDelegate {
     }
 
     private func editItem() {
-        let controller = EditFavorController()
-        controller.presentSheet(from: self)
+//        let controller = EditFavorController()
+//        controller.presentSheet(from: self)
+
+        let actionSheet = ActionSheet()
+        actionSheet.titleText = "测试哈哈哈"
+        actionSheet.addLeftButton("返回") {
+            print("返回点击")
+        }
+        actionSheet.addRightButton("确定") {
+            print("确定点击")
+        }
+        actionSheet.addActionItem("苹果") {
+            print("点击苹果")
+        }
+        actionSheet.addActionItem("橘子") {
+            print("点击橘子")
+        }
+//        let view = UIView().then { $0.backgroundColor = .red}
+//        actionSheet.setContentView(view, 230)
+        actionSheet.show(from: self)
     }
 }

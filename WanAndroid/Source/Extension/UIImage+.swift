@@ -9,126 +9,74 @@ import UIKit
 
 public extension UIImage {
 
-    static var iconBack: UIImage {
-        UIImage(named: "ic_back", in: .main, compatibleWith: nil)!
-    }
+    static var iconBack: UIImage { imageOf("ic_back") }
 
-    static var iconClose: UIImage {
-        UIImage(named: "icon_close", in: .main, compatibleWith: nil)!
-    }
+    static var iconClose: UIImage { imageOf("icon_close") }
 
-    static var iconAvatar: UIImage {
-        UIImage(named: "ic_avatar", in: .main, compatibleWith: nil)!
-    }
+    static var iconAvatar: UIImage { imageOf("ic_avatar") }
 
-    static var iconTop: UIImage {
-        UIImage(named: "ic_top", in: .main, compatibleWith: nil)!
-    }
+    static var iconTop: UIImage { imageOf("ic_top") }
 
-    static var iconHot: UIImage {
-        UIImage(named: "ic_hot", in: .main, compatibleWith: nil)!
-    }
+    static var iconHot: UIImage { imageOf("ic_hot") }
 
-    static var iconFavor: UIImage {
-        UIImage(named: "ic_favor", in: .main, compatibleWith: nil)!
-    }
+    static var iconFavor: UIImage { imageOf("ic_favor") }
 
-    static var iconFavored: UIImage {
-        UIImage(named: "ic_favored", in: .main, compatibleWith: nil)!
-    }
+    static var iconFavored: UIImage { imageOf("ic_favored") }
 
-    static var placeholder: UIImage {
-        UIImage(named: "placeholder", in: .main, compatibleWith: nil)!
-    }
+    static var placeholder: UIImage { imageOf("placeholder") }
 
-    static var iconPasswordHidden: UIImage {
-        UIImage(named: "icon_passwd_invisible", in: .main, compatibleWith: nil)!
-    }
+    static var iconPasswordHidden: UIImage { imageOf("icon_passwd_invisible") }
 
-    static var iconPasswordShown: UIImage {
-        UIImage(named: "icon_passwd_visible", in: .main, compatibleWith: nil)!
-    }
+    static var iconPasswordShown: UIImage { imageOf("icon_passwd_visible") }
 
-    static var iconArrowRight: UIImage {
-        UIImage(named: "icon_arrow_right", in: .main, compatibleWith: nil)!
-    }
+    static var iconArrowRight: UIImage { imageOf("icon_arrow_right") }
 
-    static var iconHeaderAvatar: UIImage {
-        UIImage(named: "icon_avatar", in: .main, compatibleWith: nil)!
+    static var iconHeaderAvatar: UIImage { imageOf("icon_avatar") }
+
+    private static func imageOf(_ name: String, in bundle: Bundle = .main) -> UIImage {
+        UIImage(named: name, in: bundle, compatibleWith: nil)!
     }
 }
 
 // MARK: - 首页Tabbar
 public extension UIImage {
-    static var tabbarHomeNormal: UIImage {
-        UIImage(named: "tabbar_home_normal", in: .main, compatibleWith: nil)!
-    }
+    static var tabbarHomeNormal: UIImage { imageOf("tabbar_home_normal") }
 
-    static var tabbarHomeSelected: UIImage {
-        UIImage(named: "tabbar_home_selected", in: .main, compatibleWith: nil)!
-    }
+    static var tabbarHomeSelected: UIImage { imageOf("tabbar_home_selected") }
 
-    static var tabbarWechatNormal: UIImage {
-        UIImage(named: "tabbar_wechat_normal", in: .main, compatibleWith: nil)!
-    }
+    static var tabbarWechatNormal: UIImage { imageOf("tabbar_wechat_normal") }
 
-    static var tabbarWechatSelected: UIImage {
-        UIImage(named: "tabbar_wechat_selected", in: .main, compatibleWith: nil)!
-    }
+    static var tabbarWechatSelected: UIImage { imageOf("tabbar_wechat_selected") }
 
-    static var tabbarProjectNormal: UIImage {
-        UIImage(named: "tabbar_project_normal", in: .main, compatibleWith: nil)!
-    }
+    static var tabbarProjectNormal: UIImage { imageOf("tabbar_project_normal") }
 
-    static var tabbarProjectSelected: UIImage {
-        UIImage(named: "tabbar_project_selected", in: .main, compatibleWith: nil)!
-    }
+    static var tabbarProjectSelected: UIImage { imageOf("tabbar_project_selected") }
 
-    static var tabbarSquareNormal: UIImage {
-        UIImage(named: "tabbar_square_normal", in: .main, compatibleWith: nil)!
-    }
+    static var tabbarSquareNormal: UIImage { imageOf("tabbar_square_normal") }
 
-    static var tabbarSquareSelected: UIImage {
-        UIImage(named: "tabbar_square_selected", in: .main, compatibleWith: nil)!
-    }
+    static var tabbarSquareSelected: UIImage { imageOf("tabbar_square_selected") }
 
-    static var tabbarMineNormal: UIImage {
-        UIImage(named: "tabbar_mine_normal", in: .main, compatibleWith: nil)!
-    }
+    static var tabbarMineNormal: UIImage { imageOf("tabbar_mine_normal") }
 
-    static var tabbarMineSelected: UIImage {
-        UIImage(named: "tabbar_mine_selected", in: .main, compatibleWith: nil)!
-    }
+    static var tabbarMineSelected: UIImage { imageOf("tabbar_mine_selected") }
 }
 
 // MARK: - 我的
 public extension UIImage {
 
-    static var iconMineFavor: UIImage {
-        UIImage(named: "icon_mine_favor", in: .main, compatibleWith: nil)!
-    }
+    static var iconMineFavor: UIImage { imageOf("icon_mine_favor") }
 
-    static var iconMineScore: UIImage {
-        UIImage(named: "icon_mine_score", in: .main, compatibleWith: nil)!
-    }
+    static var iconMineScore: UIImage { imageOf("icon_mine_score") }
 
-    static var iconMineRank: UIImage {
-        UIImage(named: "icon_mine_rank", in: .main, compatibleWith: nil)!
-    }
+    static var iconMineRank: UIImage { imageOf("icon_mine_rank") }
 
-    static var iconMineSetting: UIImage {
-        UIImage(named: "icon_mine_setting", in: .main, compatibleWith: nil)!
-    }
+    static var iconMineMessage: UIImage { imageOf("icon_mine_message") }
 
-    static var iconMineCleanCache: UIImage {
-        UIImage(named: "icon_mine_clean_cache", in: .main, compatibleWith: nil)!
-    }
+    static var iconMineSetting: UIImage { imageOf("icon_mine_setting") }
 
-    static var iconMineMode: UIImage {
-        UIImage(named: "icon_mine_mode", in: .main, compatibleWith: nil)!
-    }
+    static var iconMineCleanCache: UIImage { imageOf("icon_mine_clean_cache") }
 
-    static var iconMineSelected: UIImage {
-        UIImage(named: "icon_mine_selected", in: .main, compatibleWith: nil)!
-    }
+    static var iconMineMode: UIImage { imageOf("icon_mine_mode") }
+
+    static var iconMineSelected: UIImage { imageOf("icon_mine_selected") }
 }

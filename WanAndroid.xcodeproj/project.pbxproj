@@ -47,6 +47,7 @@
 		DE60F4C226B7F15600AD69B0 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60F4C126B7F15600AD69B0 /* LoginController.swift */; };
 		DE60F4C426B7FE0500AD69B0 /* LoginViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60F4C326B7FE0500AD69B0 /* LoginViews.swift */; };
 		DE84E51A26D39B990004AC1E /* EditFavorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE84E51926D39B990004AC1E /* EditFavorController.swift */; };
+		DE84E54226D783840004AC1E /* TestOverlayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE84E54126D783830004AC1E /* TestOverlayController.swift */; };
 		DEB8186826A18815002FB89F /* AutoDispose.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB8186726A18815002FB89F /* AutoDispose.swift */; };
 		DEB8186B26A18B9F002FB89F /* ArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB8186A26A18B9F002FB89F /* ArticleCell.swift */; };
 		DEB8187026A19A62002FB89F /* WechatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB8186F26A19A62002FB89F /* WechatController.swift */; };
@@ -115,6 +116,7 @@
 		DE60F4C126B7F15600AD69B0 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		DE60F4C326B7FE0500AD69B0 /* LoginViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViews.swift; sourceTree = "<group>"; };
 		DE84E51926D39B990004AC1E /* EditFavorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFavorController.swift; sourceTree = "<group>"; };
+		DE84E54126D783830004AC1E /* TestOverlayController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestOverlayController.swift; sourceTree = "<group>"; };
 		DEB8186726A18815002FB89F /* AutoDispose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoDispose.swift; sourceTree = "<group>"; };
 		DEB8186A26A18B9F002FB89F /* ArticleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCell.swift; sourceTree = "<group>"; };
 		DEB8186F26A19A62002FB89F /* WechatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WechatController.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 		DE287B062697FA550096736A /* Biz */ = {
 			isa = PBXGroup;
 			children = (
+				DE84E54026D7837C0004AC1E /* Test */,
 				DEB8186926A18B71002FB89F /* Common */,
 				DE287B0A2697FD670096736A /* Home */,
 				DE287B072697FA610096736A /* Main */,
@@ -422,6 +425,14 @@
 				DE84E51926D39B990004AC1E /* EditFavorController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		DE84E54026D7837C0004AC1E /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				DE84E54126D783830004AC1E /* TestOverlayController.swift */,
+			);
+			path = Test;
 			sourceTree = "<group>";
 		};
 		DEB8186926A18B71002FB89F /* Common */ = {
@@ -645,6 +656,7 @@
 				DEE8828D26B150AA005F5B3E /* SquareItemController.swift in Sources */,
 				DEB8187026A19A62002FB89F /* WechatController.swift in Sources */,
 				DEC106C826CE382B001A4908 /* SettingController.swift in Sources */,
+				DE84E54226D783840004AC1E /* TestOverlayController.swift in Sources */,
 				DEE8829126B15250005F5B3E /* SquareItem.swift in Sources */,
 				DE60F4C226B7F15600AD69B0 /* LoginController.swift in Sources */,
 				DE5C2C9026A551FF0045FBAC /* ProjectItemViewModel.swift in Sources */,
