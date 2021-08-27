@@ -15,6 +15,7 @@ class FavorController: MineBaseListController<Favor, FavorViewModel> {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "我的收藏"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: .iconAdd, style: .plain, target: self, action: #selector(addFavor))
     }
 
     override func config(tableView: UITableView) {
@@ -49,31 +50,24 @@ extension FavorController: UITableViewDelegate {
                 self?.viewModel.uncollect(indexPath)
             }),
             UITableViewRowAction(style: .normal, title: "编辑", handler: { [weak self] action, indexPath in
-                self?.editItem()
+                guard let `self` = self else { return }
+                let favor = self.viewModel.dataSource[indexPath.row]
+                self.editFavor(favor)
             })
         ]
     }
+}
 
-    private func editItem() {
-//        let controller = EditFavorController()
-//        controller.presentSheet(from: self)
+extension FavorController {
+    @objc private func addFavor() {
+        editFavor(nil)
+    }
 
-        let actionSheet = ActionSheet()
-        actionSheet.titleText = "测试哈哈哈"
-        actionSheet.addLeftButton("返回") {
-            print("返回点击")
+    private func editFavor(_ favor: Favor?) {
+        let controller = EditFavorController(favor)
+        controller.editResultAction = { [weak self] _ in
+            self?.tableView.refresh()
         }
-        actionSheet.addRightButton("确定") {
-            print("确定点击")
-        }
-        actionSheet.addActionItem("苹果") {
-            print("点击苹果")
-        }
-        actionSheet.addActionItem("橘子") {
-            print("点击橘子")
-        }
-//        let view = UIView().then { $0.backgroundColor = .red}
-//        actionSheet.setContentView(view, 230)
-        actionSheet.show(from: self)
+        controller.present(from: self)
     }
 }

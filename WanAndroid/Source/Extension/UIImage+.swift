@@ -13,6 +13,8 @@ public extension UIImage {
 
     static var iconClose: UIImage { imageOf("icon_close") }
 
+    static var iconAdd: UIImage { imageOf("ic_add") }
+
     static var iconAvatar: UIImage { imageOf("ic_avatar") }
 
     static var iconTop: UIImage { imageOf("ic_top") }

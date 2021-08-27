@@ -9,7 +9,7 @@ import Foundation
 import HandyJSON
 
 /// 文章
-struct Article: HandyJSON {
+class Article: HandyJSON {
     var id: Int = 0
     var title: String = ""
     var chapterId: Int = 0
@@ -35,6 +35,8 @@ struct Article: HandyJSON {
     var visible: Int = 0
     var zan: Int = 0
     var tags: [Tag] = []
+
+    required init() { }
 
     var displayTitle: String {
         filterHtmlTag(title)

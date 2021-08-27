@@ -6,8 +6,10 @@
 //
 
 import UIKit
+import SnapKit
 
 fileprivate let animationDuration: TimeInterval = 0.35
+
 open class OverlayViewController: UIViewController {
 
     public enum AnimationInType {
@@ -17,6 +19,11 @@ open class OverlayViewController: UIViewController {
         case leftOut, rightOut, topOut, bottomOut, fade
     }
 
+    public var contentViewHorizontalPadding: CGFloat = horizontalPadding
+    public let contentView: UIView = UIView()
+    public var dismissWhenTouchOutside: Bool = false
+    public var updateFrameWithKeyboard: Bool = true
+
     public var animationInType: AnimationInType {
         get { overlayAnimator.animationInType }
         set { overlayAnimator.animationInType = newValue }
@@ -25,15 +32,39 @@ open class OverlayViewController: UIViewController {
         get { overlayAnimator.animationOutType }
         set { overlayAnimator.animationOutType = newValue }
     }
-    public var dismissWhenTouchOutside: Bool {
-        get { overlayAnimator.dismissWhenTouchOutside }
-        set { overlayAnimator.dismissWhenTouchOutside = newValue }
+
+    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        registerKeyboardEvent()
+    }
+
+    public required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        registerKeyboardEvent()
+    }
+
+    deinit {
+        unregisterKeyboardEvent()
+    }
+
+    open override func loadView() {
+        super.loadView()
+
+        contentView.cornerRadius(8)
+        contentView.backgroundColor = Colors.backgroundPrimary
+        view.addSubview(contentView)
+
+        contentView.snp.makeConstraints { make in
+            make.leading.equalTo(contentViewHorizontalPadding)
+            make.trailing.equalTo(-contentViewHorizontalPadding)
+            make.centerY.equalToSuperview()
+        }
     }
 
     open override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.isUserInteractionEnabled = false
+        view.addTapGesture(self, #selector(onDismissClick))
     }
     
     public func present(from parentController: UIViewController, animated: Bool = true, completion: (() -> Void)? = nil) {
@@ -43,21 +74,52 @@ open class OverlayViewController: UIViewController {
         controller.present(self, animated: true, completion: completion)
     }
 
+    @objc private func onDismissClick() {
+        view.endEditing(true)
+        if dismissWhenTouchOutside { dismiss(animated: true) }
+    }
+
     private lazy var overlayAnimator: OverlayAnimator = {
         let animator = OverlayAnimator()
         return animator
     }()
 }
 
+extension OverlayViewController {
+
+    private func registerKeyboardEvent() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardFrameShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardFrameHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    private func unregisterKeyboardEvent() {
+        NotificationCenter.default.removeObserver(self)
+    }
+
+    @objc private func keyboardFrameShow(_ notification: Notification) {
+        guard updateFrameWithKeyboard, let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
+        let transform: CGAffineTransform = contentView.frame.maxY <= keyboardFrame.minY ? .identity :
+            CGAffineTransform(translationX: 0, y: keyboardFrame.minY - contentView.frame.maxY)
+        UIView.animate(withDuration: 0.25) {
+            self.contentView.transform = transform
+        }
+    }
+
+    @objc private func keyboardFrameHide(_ notification: Notification) {
+        guard updateFrameWithKeyboard, let _ = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
+        UIView.animate(withDuration: 0.25) {
+            self.contentView.transform = .identity
+        }
+    }
+}
+
 fileprivate class OverlayAnimator: NSObject, UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning {
     private var isPresented: Bool = false
-    var dismissWhenTouchOutside: Bool = true
     var animationInType: OverlayViewController.AnimationInType = .fade
     var animationOutType: OverlayViewController.AnimationOutType = .fade
 
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         let presentationController = OverlayPresentationController(presentedViewController: presented, presenting: presenting)
-        presentationController.dismissWhenTouchOutside = dismissWhenTouchOutside
         return presentationController
     }
 
@@ -134,8 +196,6 @@ fileprivate class OverlayAnimator: NSObject, UIViewControllerTransitioningDelega
 
 fileprivate class OverlayPresentationController: UIPresentationController {
 
-    public var dismissWhenTouchOutside: Bool = true
-
     public override var frameOfPresentedViewInContainerView: CGRect {
         ScreenBounds
     }
@@ -165,17 +225,10 @@ fileprivate class OverlayPresentationController: UIPresentationController {
         }
     }
 
-    @objc private func onBackgroundClick() {
-        if dismissWhenTouchOutside {
-            presentedViewController.dismiss(animated: true, completion: nil)
-        }
-    }
-
     private lazy var backgroundView: UIControl = {
         let view = UIControl()
         view.frame = containerView?.bounds ?? ScreenBounds
         view.backgroundColor = .black.withAlphaComponent(0.35)
-        view.addTarget(self, action: #selector(onBackgroundClick), for: .touchUpInside)
         return view
     }()
 }

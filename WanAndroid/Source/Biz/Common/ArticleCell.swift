@@ -19,7 +19,7 @@ class ArticleCell: UITableViewCell {
             dateLabel.text = item.niceShareDate
             chapterLabel.text = item.category
 
-            favorImage.image = item.collect ? .iconFavored : .iconFavor
+            favorButton.isSelected = item.collect
             tagCollectionView.reloadData()
 
             if item.top {
@@ -34,19 +34,14 @@ class ArticleCell: UITableViewCell {
             if item.fresh {
                 newIcon.isHidden = false
                 newIcon.snp.updateConstraints { make in
-                    if item.top {
-                        make.leading.equalTo(authorLabel.snp.trailing).offset(20)
-                    } else {
-                        make.leading.equalTo(authorLabel.snp.trailing).offset(4)
-                    }
+                    make.leading.equalTo(authorLabel.snp.trailing).offset(item.top ? 20 : 40)
                 }
             } else {
                 newIcon.isHidden = true
             }
         }
     }
-
-    var favorAction: (() -> Void)? = nil
+    var collectingActicle: Article?
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -98,8 +93,8 @@ class ArticleCell: UITableViewCell {
             make.top.equalTo(avatarImage.snp.bottom).offset(12)
         }
 
-        contentView.addSubview(favorImage)
-        favorImage.snp.makeConstraints { make in
+        contentView.addSubview(favorButton)
+        favorButton.snp.makeConstraints { make in
             make.width.height.equalTo(20)
             make.top.equalTo(titleLabel.snp.bottom).offset(12)
             make.trailing.equalTo(-horizontalPadding)
@@ -107,13 +102,13 @@ class ArticleCell: UITableViewCell {
 
         contentView.addSubview(dateLabel)
         dateLabel.snp.makeConstraints { make in
-            make.trailing.equalTo(favorImage.snp.leading).offset(-8)
-            make.centerY.equalTo(favorImage.snp.centerY)
+            make.trailing.equalTo(favorButton.snp.leading).offset(-8)
+            make.centerY.equalTo(favorButton.snp.centerY)
         }
 
         contentView.addSubview(tagCollectionView)
         tagCollectionView.snp.makeConstraints { make in
-            make.centerY.equalTo(favorImage.snp.centerY)
+            make.centerY.equalTo(favorButton.snp.centerY)
             make.leading.equalTo(horizontalPadding)
             make.width.equalTo(ScreenWidth / 2)
             make.height.equalTo(24)
@@ -122,7 +117,7 @@ class ArticleCell: UITableViewCell {
         contentView.addSubview(separatorView)
         separatorView.snp.makeConstraints { make in
             make.height.equalTo(1)
-            make.top.equalTo(favorImage.snp.bottom).offset(verticalPadding)
+            make.top.equalTo(favorButton.snp.bottom).offset(verticalPadding)
             make.bottom.equalToSuperview()
             make.leading.equalTo(horizontalPadding)
             make.trailing.equalToSuperview()
@@ -183,9 +178,11 @@ class ArticleCell: UITableViewCell {
         return label
     }()
 
-    private lazy var favorImage: UIImageView = {
-        let view = UIImageView()
-        view.contentMode = .scaleAspectFill
+    private lazy var favorButton: UIButton = {
+        let view = UIButton()
+        view.setImage(.iconFavored, for: .selected)
+        view.setImage(.iconFavor, for: .normal)
+        view.addTarget(self, action: #selector(doCollect), for: .touchUpInside)
         return view
     }()
 
@@ -206,6 +203,34 @@ class ArticleCell: UITableViewCell {
         view.backgroundColor = Colors.separator
         return view
     }()
+}
+
+extension ArticleCell: AutoDisposed {
+    @objc private func doCollect() {
+        guard let item = article else { return }
+        collectingActicle = item
+        if item.collect {
+            ApiHelper.uncollect(idInList: item.id).subscribe { [weak self] result in
+                guard result, let `self` = self else { return }
+                self.collectingActicle?.collect = false
+                if item.id == self.collectingActicle?.id ?? 0 {
+                    item.collect = false
+                    self.favorButton.isSelected = false
+                }
+                self.collectingActicle = nil
+            }.disposed(by: disposeBag)
+        } else {
+            ApiHelper.collect(id: item.id).subscribe { [weak self] result in
+                guard result, let `self` = self else { return }
+                self.collectingActicle?.collect = true
+                if item.id == self.collectingActicle?.id ?? 0 {
+                    item.collect = true
+                    self.favorButton.isSelected = true
+                }
+                self.collectingActicle = nil
+            }.disposed(by: disposeBag)
+        }
+    }
 }
 
 extension ArticleCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

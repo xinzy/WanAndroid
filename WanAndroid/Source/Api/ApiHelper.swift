@@ -159,6 +159,12 @@ struct ApiHelper {
         return post(path: path, param)
     }
 
+    /// 收藏文章
+    static func collect(id: Int) -> Observable<Bool> {
+        let path = "lg/collect/\(id)/json"
+        return post(path: path)
+    }
+
     /// 取消收藏 文章列表中使用
     static func uncollect(idInList: Int) -> Observable<Bool> {
         let path = "lg/uncollect_originId/\(idInList)/json"

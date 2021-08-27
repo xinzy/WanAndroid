@@ -41,10 +41,10 @@ public class ThemeButton: UIButton {
 
         switch type {
         case .yellowBlack:
-            backgroundColor = Colors.textHint
+            backgroundColor = Colors.brand_600
             setTitleColor(Colors.textPrimary, for: .normal)
         case .whiteBlue:
-            backgroundColor = Colors.backgroundPrimary
+            backgroundColor = .clear
             setTitleColor(Colors.blue_600, for: .normal)
             layer.borderWidth = 1
             layer.borderColor = Colors.blue_600.cgColor
