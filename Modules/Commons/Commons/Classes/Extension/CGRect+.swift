@@ -30,20 +30,20 @@ public extension CGRect {
     }
 
     var centerX: CGFloat {
-        get { (left + width) / 2 }
+        get { left + width / 2 }
         set { left += newValue - centerX }
     }
 
     var centerY: CGFloat {
-        get { (top + height) / 2 }
+        get { top + height / 2 }
         set { top += newValue - centerY }
     }
 
     var center: CGPoint {
         get { CGPoint(x: centerX, y: centerY) }
         set {
-            centerX = center.x
-            centerY = center.y
+            centerX = newValue.x
+            centerY = newValue.y
         }
     }
 }

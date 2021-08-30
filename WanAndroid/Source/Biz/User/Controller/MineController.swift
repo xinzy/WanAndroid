@@ -104,7 +104,7 @@ extension MineController {
             })
             .onCellSelection { [weak self] _, _ in
                 guard let `self` = self else { return }
-                TestOverlayController().present(from: self, animated: true)
+                TestController.showController(self.navigationController)
             }
             <<< SettingItemLabelRow("Setting", { row in
                 row.iconImage = .iconMineSetting

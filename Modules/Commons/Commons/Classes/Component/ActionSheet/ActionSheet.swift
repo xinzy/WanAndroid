@@ -26,6 +26,10 @@ open class ActionSheet {
         get { actionSheetController.showDefaultCancelButton }
         set { actionSheetController.showDefaultCancelButton = newValue }
     }
+    public var panToDismiss: Bool {
+        get { actionSheetController.panToDismiss }
+        set { actionSheetController.panToDismiss = newValue }
+    }
     public var defaultCancelText: String {
         get { actionSheetController.defaultCancelItem.title }
         set { actionSheetController.defaultCancelItem.title = newValue }
@@ -280,11 +284,13 @@ public class ActionSheetController: SheetViewController {
     public var contentView: UIView?
     public lazy var defaultCancelItem: ActionSheetItem = ActionSheetItem(title: "取消", textColor: Colors.red_600)
     public var showDefaultCancelButton: Bool = true
+    public var panToDismiss: Bool = true
 
     public override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = Colors.backgroundPrimary
+        view.addGestureRecognizer(panGestureRecognizer)
         setupView()
     }
 
@@ -334,4 +340,45 @@ public class ActionSheetController: SheetViewController {
         let view = UIView(frame: CGRect(x: 0, y: headerView.height, width: ScreenWidth, height: contentHeight))
         return view
     }()
+
+    private lazy var panGestureRecognizer: UIPanGestureRecognizer = {
+        let recognizer = UIPanGestureRecognizer(target: self, action: #selector(onPanGestureRecognizer(_:)))
+        recognizer.minimumNumberOfTouches = 1
+        recognizer.delegate = self
+        return recognizer
+    }()
+}
+
+extension ActionSheetController: UIGestureRecognizerDelegate {
+    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        panToDismiss
+    }
+
+    @objc private func onPanGestureRecognizer(_ recognizer: UIPanGestureRecognizer) {
+        switch recognizer.state {
+        case .began: break
+        case .changed:
+            let translation = recognizer.translation(in: view)
+            if abs(translation.x) > abs(translation.y) { break }
+            if translation.y <= 0 {
+                view.transform = .identity
+            } else {
+                view.transform = CGAffineTransform(translationX: 0, y: translation.y)
+            }
+        case .ended:
+            let translation = recognizer.translation(in: view)
+            if translation.y >= controllerHeight / 2 {
+                dismiss(animated: true)
+            } else {
+                UIView.animate(withDuration: 0.25) {
+                    self.view.transform = .identity
+                }
+            }
+        case .cancelled:
+            UIView.animate(withDuration: 0.25) {
+                self.view.transform = .identity
+            }
+        default: break
+        }
+    }
 }

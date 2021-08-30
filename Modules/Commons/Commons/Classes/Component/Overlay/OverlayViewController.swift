@@ -59,11 +59,6 @@ open class OverlayViewController: UIViewController {
             make.trailing.equalTo(-contentViewHorizontalPadding)
             make.centerY.equalToSuperview()
         }
-    }
-
-    open override func viewDidLoad() {
-        super.viewDidLoad()
-
         view.addTapGesture(self, #selector(onDismissClick))
     }
     
