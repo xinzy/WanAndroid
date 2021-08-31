@@ -41,3 +41,6 @@ public var statusBarHeight: CGFloat {
 public var safeAreaBottom: CGFloat {
     UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
 }
+
+// 动画时长
+let animationDuration: TimeInterval = 0.35

@@ -8,8 +8,6 @@
 import UIKit
 import SnapKit
 
-fileprivate let animationDuration: TimeInterval = 0.35
-
 open class OverlayViewController: UIViewController {
 
     public enum AnimationInType {

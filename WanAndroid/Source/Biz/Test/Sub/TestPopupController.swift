@@ -9,13 +9,12 @@ import UIKit
 import SnapKit
 import Commons
 
-class TestController: UIViewController {
+class TestPopupController: UIViewController {
 
     static func showController(_ navigationController: UINavigationController?) {
-        let controller = TestController()
+        let controller = TestPopupController()
         navigationController?.pushViewController(controller, animated: true)
     }
-
 
     override func viewDidLoad() {
         super.viewDidLoad()

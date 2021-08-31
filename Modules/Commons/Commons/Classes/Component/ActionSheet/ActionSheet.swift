@@ -51,9 +51,9 @@ open class ActionSheet {
         get { actionSheetController.headerView.titleView }
         set { actionSheetController.headerView.titleView = newValue }
     }
-    private var contentView: UIView? {
-        get { actionSheetController.contentView }
-        set { actionSheetController.contentView = newValue }
+    private var containerView: UIView? {
+        get { actionSheetController.containerView }
+        set { actionSheetController.containerView = newValue }
     }
 
     public init() { }
@@ -69,7 +69,7 @@ open class ActionSheet {
     public func setContentView(_ contentView: UIView, _ height: CGFloat) {
         showDefaultCancelButton = false
         contentView.frame = CGRect(x: 0, y: 0, width: ScreenWidth, height: height)
-        self.contentView = contentView
+        self.containerView = contentView
     }
 
     public func addActionItem(_ title: String, textColor: UIColor = Colors.textPrimary, font: UIFont = .font(ofSize: 16),
@@ -78,7 +78,7 @@ open class ActionSheet {
     }
 
     public func show(from controller: UIViewController, animated: Bool = true, completion: (() -> Void)? = nil) {
-        actionSheetController.presentSheet(from: controller, animated: animated, completion: completion)
+        actionSheetController.present(from: controller, animated: animated, completion: completion)
     }
 
     func dismiss(animated: Bool = true, completion: (() -> Void)? = nil) {
@@ -258,11 +258,11 @@ fileprivate class ActionSheetItemView: UIControl {
     private let dividerView: UIView = UIView().then { $0.backgroundColor = Colors.separator }
 }
 
-public class ActionSheetController: SheetViewController {
-    public override var controllerHeight: CGFloat {
+public class ActionSheetController: SlideViewController {
+    public override var controllerSize: CGFloat {
         var height: CGFloat = headerView.height
 
-        if let contentView = contentView {
+        if let contentView = containerView {
             height += contentView.height
         } else {
             actionSheetItems.forEach { height += $0.height }
@@ -281,28 +281,26 @@ public class ActionSheetController: SheetViewController {
         return header
     }()
     public var actionSheetItems = [ActionSheetItem]()
-    public var contentView: UIView?
+    public var containerView: UIView?
     public lazy var defaultCancelItem: ActionSheetItem = ActionSheetItem(title: "取消", textColor: Colors.red_600)
     public var showDefaultCancelButton: Bool = true
-    public var panToDismiss: Bool = true
 
     public override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = Colors.backgroundPrimary
-        view.addGestureRecognizer(panGestureRecognizer)
+        contentView.backgroundColor = Colors.backgroundPrimary
         setupView()
     }
 
     private func setupView() {
-        view.addSubview(headerView)
+        contentView.addSubview(headerView)
 
-        if let contentView = contentView {
+        if let contentView = containerView {
             let contentFrame = contentView.frame
             contentView.frame = CGRect(x: 0, y: headerView.height, width: contentFrame.width, height: contentFrame.height)
-            view.addSubview(contentView)
+            contentView.addSubview(contentView)
         } else {
-            view.addSubview(sheetView)
+            contentView.addSubview(sheetView)
 
             var y: CGFloat = 0
             actionSheetItems.forEach { item in
@@ -340,45 +338,4 @@ public class ActionSheetController: SheetViewController {
         let view = UIView(frame: CGRect(x: 0, y: headerView.height, width: ScreenWidth, height: contentHeight))
         return view
     }()
-
-    private lazy var panGestureRecognizer: UIPanGestureRecognizer = {
-        let recognizer = UIPanGestureRecognizer(target: self, action: #selector(onPanGestureRecognizer(_:)))
-        recognizer.minimumNumberOfTouches = 1
-        recognizer.delegate = self
-        return recognizer
-    }()
-}
-
-extension ActionSheetController: UIGestureRecognizerDelegate {
-    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        panToDismiss
-    }
-
-    @objc private func onPanGestureRecognizer(_ recognizer: UIPanGestureRecognizer) {
-        switch recognizer.state {
-        case .began: break
-        case .changed:
-            let translation = recognizer.translation(in: view)
-            if abs(translation.x) > abs(translation.y) { break }
-            if translation.y <= 0 {
-                view.transform = .identity
-            } else {
-                view.transform = CGAffineTransform(translationX: 0, y: translation.y)
-            }
-        case .ended:
-            let translation = recognizer.translation(in: view)
-            if translation.y >= controllerHeight / 2 {
-                dismiss(animated: true)
-            } else {
-                UIView.animate(withDuration: 0.25) {
-                    self.view.transform = .identity
-                }
-            }
-        case .cancelled:
-            UIView.animate(withDuration: 0.25) {
-                self.view.transform = .identity
-            }
-        default: break
-        }
-    }
 }

@@ -19,6 +19,7 @@ class MineController: FormViewController {
         fd_prefersNavigationBarHidden = true
         view.backgroundColor = Colors.backgroundSecondary
         setupView()
+        registerTap()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -39,6 +40,9 @@ class MineController: FormViewController {
         button.action = logout
         return button
     }()
+
+    private var counter = 0
+    private var lastTapTime: TimeInterval = 0
 }
 
 extension MineController {
@@ -102,9 +106,8 @@ extension MineController {
                 row.iconImage = .iconMineMessage
                 row.titleText = "消息"
             })
-            .onCellSelection { [weak self] _, _ in
-                guard let `self` = self else { return }
-                TestController.showController(self.navigationController)
+            .onCellSelection { _, _ in
+                // do nothing
             }
             <<< SettingItemLabelRow("Setting", { row in
                 row.iconImage = .iconMineSetting
@@ -134,6 +137,24 @@ extension MineController {
 
     private func login() {
         LoginController.showController(self)
+    }
+
+    private func registerTap() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tap))
+        tableView.addGestureRecognizer(tap)
+    }
+
+    @objc private func tap() {
+        let now = Date().timeIntervalSince1970
+        if now -  lastTapTime < 0.5 {
+            counter += 1
+            if counter == 5 {
+                TestRootController.showController(navigationController)
+            }
+        } else {
+            counter = 1
+        }
+        lastTapTime = now
     }
 }
 

@@ -7,6 +7,13 @@
 
 import UIKit
 
+/// 弹出的气泡View
+///
+/// let contentView = UIView(frame: CGRect(x: 0, y: 0, width: 120, height: 240))
+/// let popupView = PopupView()
+/// popupView.config.isHighlightAnchorView = true
+/// popupView.show(contentView, anchorView: anchorView)
+///
 public class PopupView: UIControl {
     public struct Config {
         /// 箭头方向

@@ -64,7 +64,9 @@
 		DEC106DF26D36994001A4908 /* MineListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC106DE26D36994001A4908 /* MineListController.swift */; };
 		DEC106E226D373C0001A4908 /* FavorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC106E126D373C0001A4908 /* FavorCell.swift */; };
 		DECE387726B3A5F700DA3343 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECE387626B3A5F700DA3343 /* HeaderView.swift */; };
-		DED1E16726DC848500D50711 /* TestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED1E16626DC848500D50711 /* TestController.swift */; };
+		DED1E16726DC848500D50711 /* TestPopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED1E16626DC848500D50711 /* TestPopupController.swift */; };
+		DED1E16926DDD31600D50711 /* TestRootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED1E16826DDD31600D50711 /* TestRootController.swift */; };
+		DED1E16C26DDDBD500D50711 /* TestSlideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED1E16B26DDDBD500D50711 /* TestSlideController.swift */; };
 		DEE8828526AFDFE9005F5B3E /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE8828426AFDFE9005F5B3E /* WebViewController.swift */; };
 		DEE8828726B0F394005F5B3E /* KnowledgeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE8828626B0F394005F5B3E /* KnowledgeController.swift */; };
 		DEE8828926B104BD005F5B3E /* KnowledgeItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE8828826B104BD005F5B3E /* KnowledgeItemController.swift */; };
@@ -134,7 +136,9 @@
 		DEC106DE26D36994001A4908 /* MineListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineListController.swift; sourceTree = "<group>"; };
 		DEC106E126D373C0001A4908 /* FavorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavorCell.swift; sourceTree = "<group>"; };
 		DECE387626B3A5F700DA3343 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
-		DED1E16626DC848500D50711 /* TestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestController.swift; sourceTree = "<group>"; };
+		DED1E16626DC848500D50711 /* TestPopupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPopupController.swift; sourceTree = "<group>"; };
+		DED1E16826DDD31600D50711 /* TestRootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRootController.swift; sourceTree = "<group>"; };
+		DED1E16B26DDDBD500D50711 /* TestSlideController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSlideController.swift; sourceTree = "<group>"; };
 		DEE8828426AFDFE9005F5B3E /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		DEE8828626B0F394005F5B3E /* KnowledgeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowledgeController.swift; sourceTree = "<group>"; };
 		DEE8828826B104BD005F5B3E /* KnowledgeItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowledgeItemController.swift; sourceTree = "<group>"; };
@@ -432,8 +436,8 @@
 		DE84E54026D7837C0004AC1E /* Test */ = {
 			isa = PBXGroup;
 			children = (
-				DE84E54126D783830004AC1E /* TestOverlayController.swift */,
-				DED1E16626DC848500D50711 /* TestController.swift */,
+				DED1E16A26DDD40A00D50711 /* Sub */,
+				DED1E16826DDD31600D50711 /* TestRootController.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -508,6 +512,16 @@
 				DE60F4C326B7FE0500AD69B0 /* LoginViews.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		DED1E16A26DDD40A00D50711 /* Sub */ = {
+			isa = PBXGroup;
+			children = (
+				DED1E16626DC848500D50711 /* TestPopupController.swift */,
+				DE84E54126D783830004AC1E /* TestOverlayController.swift */,
+				DED1E16B26DDDBD500D50711 /* TestSlideController.swift */,
+			);
+			path = Sub;
 			sourceTree = "<group>";
 		};
 		DEE8828226AFDFD1005F5B3E /* WebView */ = {
@@ -650,6 +664,7 @@
 				DEE8828726B0F394005F5B3E /* KnowledgeController.swift in Sources */,
 				DE287B32269C13EA0096736A /* Tag.swift in Sources */,
 				DEE8828B26B107CC005F5B3E /* KnowledgeItemViewModel.swift in Sources */,
+				DED1E16926DDD31600D50711 /* TestRootController.swift in Sources */,
 				DEC106DD26D34BAF001A4908 /* MineListViewModel.swift in Sources */,
 				DEC106C326CCFB55001A4908 /* UIImage+.swift in Sources */,
 				DE287B42269D3D260096736A /* HomeViewModel.swift in Sources */,
@@ -698,8 +713,9 @@
 				DE287B2B269C13EA0096736A /* Favor.swift in Sources */,
 				DE60F4C426B7FE0500AD69B0 /* LoginViews.swift in Sources */,
 				DE287B33269C13EA0096736A /* Banner.swift in Sources */,
+				DED1E16C26DDDBD500D50711 /* TestSlideController.swift in Sources */,
 				DE287B092697FA830096736A /* MainViewController.swift in Sources */,
-				DED1E16726DC848500D50711 /* TestController.swift in Sources */,
+				DED1E16726DC848500D50711 /* TestPopupController.swift in Sources */,
 				DEE8828526AFDFE9005F5B3E /* WebViewController.swift in Sources */,
 				DEC106D726D342C5001A4908 /* ScoreHistoryCell.swift in Sources */,
 				DEB8186826A18815002FB89F /* AutoDispose.swift in Sources */,
