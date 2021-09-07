@@ -25,7 +25,7 @@ class EditFavorController: OverlayViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        dismissWhenTouchOutside = false
+        dismissWhenTouchOutside = true
         setupView()
     }
 

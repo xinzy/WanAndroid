@@ -129,12 +129,13 @@ public class ActionSheetHeader: UIView {
         }
     }
 
-    public func addLeftButton(_ title: String, fontSize: CGFloat = 14, titleColor: UIColor = Colors.blue_600, handler: ActionSheetHandler? = nil) {
+    public func addLeftButton(_ title: String = "", image: UIImage? = nil, fontSize: CGFloat = 13, titleColor: UIColor = Colors.blue_600, handler: ActionSheetHandler? = nil) {
         leftHandler = handler
 
         leftButton.titleFont = .font(ofSize: fontSize)
         leftButton.setTitleColor(titleColor, for: .normal)
         leftButton.setTitle(title, for: .normal)
+        leftButton.setImage(image, for: .normal)
 
         if leftButton.superview == nil {
             addSubview(leftButton)
@@ -145,12 +146,13 @@ public class ActionSheetHeader: UIView {
         }
     }
 
-    public func addRightButton(_ title: String, fontSize: CGFloat = 14, titleColor: UIColor = Colors.blue_600, handler: ActionSheetHandler? = nil) {
+    public func addRightButton(_ title: String = "", image: UIImage? = nil, fontSize: CGFloat = 14, titleColor: UIColor = Colors.blue_600, handler: ActionSheetHandler? = nil) {
         rightHandler = handler
 
         rightButton.titleFont = .font(ofSize: fontSize)
         rightButton.setTitleColor(titleColor, for: .normal)
         rightButton.setTitle(title, for: .normal)
+        rightButton.setImage(image, for: .normal)
 
         if rightButton.superview == nil {
             addSubview(rightButton)
@@ -289,6 +291,7 @@ public class ActionSheetController: SlideViewController {
         super.viewDidLoad()
 
         contentView.backgroundColor = Colors.backgroundPrimary
+        dismissWhenTouchOutside = true
         setupView()
     }
 

@@ -20,7 +20,15 @@ open class SlideViewController: UIViewController {
     }
     public var cornerRadius: CGFloat = 8
     public var maskToRadius: Bool = true
-    public var dismissWhenTouchOutside: Bool = true
+    public var dismissWhenTouchOutside: Bool = false {
+        didSet {
+            if dismissWhenTouchOutside {
+                view.addTapGesture(self, #selector(dismissAction))
+            } else {
+                view.removeAllGestureRecognizers()
+            }
+        }
+    }
     public var panToDismiss: Bool = true
 
     public var contentView: UIView = UIView()
@@ -43,7 +51,7 @@ open class SlideViewController: UIViewController {
             if maskToRadius { contentView.cornerRadii(cornerRadius, corners: [.topLeft, .topRight]) }
         }
         view.addSubview(contentView)
-        view.addTapGesture(self, #selector(onBackgroundClick))
+        contentView.addTapGesture(self, #selector(hideKeyboardIfNeed))
         contentView.addGestureRecognizer(panGestureRecognizer)
     }
 
@@ -54,8 +62,12 @@ open class SlideViewController: UIViewController {
         controller.present(self, animated: true, completion: completion)
     }
 
-    @objc private func onBackgroundClick() {
+    @objc private func dismissAction() {
         if dismissWhenTouchOutside { dismiss(animated: true) }
+    }
+
+    @objc private func hideKeyboardIfNeed() {
+        view.endEditing(true)
     }
 
     private lazy var slideAnimator: SlideAnimator = {

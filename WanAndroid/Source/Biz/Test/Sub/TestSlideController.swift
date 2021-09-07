@@ -57,12 +57,14 @@ class TestSlideController: UIViewController {
         case 2:
             controller.size = 240
             controller.slidePosition = .right
+            controller.dismissWhenTouchOutside = true
         case 3:
             controller.size = 360
             controller.slidePosition = .top
         case 4:
             controller.size = 360
             controller.slidePosition = .bottom
+            controller.dismissWhenTouchOutside = true
         default: break
         }
         controller.present(from: self)

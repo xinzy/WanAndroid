@@ -45,9 +45,7 @@ class HeaderView: UIView {
     }
 
     @objc private func loginClick() {
-        if !user.isLogin {
-            loginAction?()
-        }
+        loginAction?()
     }
 
     required init?(coder: NSCoder) {

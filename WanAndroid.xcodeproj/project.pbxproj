@@ -67,12 +67,14 @@
 		DED1E16726DC848500D50711 /* TestPopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED1E16626DC848500D50711 /* TestPopupController.swift */; };
 		DED1E16926DDD31600D50711 /* TestRootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED1E16826DDD31600D50711 /* TestRootController.swift */; };
 		DED1E16C26DDDBD500D50711 /* TestSlideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED1E16B26DDDBD500D50711 /* TestSlideController.swift */; };
+		DED1E17F26DF867900D50711 /* TestAlbumController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED1E17E26DF867900D50711 /* TestAlbumController.swift */; };
 		DEE8828526AFDFE9005F5B3E /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE8828426AFDFE9005F5B3E /* WebViewController.swift */; };
 		DEE8828726B0F394005F5B3E /* KnowledgeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE8828626B0F394005F5B3E /* KnowledgeController.swift */; };
 		DEE8828926B104BD005F5B3E /* KnowledgeItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE8828826B104BD005F5B3E /* KnowledgeItemController.swift */; };
 		DEE8828B26B107CC005F5B3E /* KnowledgeItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE8828A26B107CC005F5B3E /* KnowledgeItemViewModel.swift */; };
 		DEE8828D26B150AA005F5B3E /* SquareItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE8828C26B150AA005F5B3E /* SquareItemController.swift */; };
 		DEE8829126B15250005F5B3E /* SquareItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE8829026B15250005F5B3E /* SquareItem.swift */; };
+		DEEA298826E70F030078653D /* TestPasswordInputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEA298726E70F030078653D /* TestPasswordInputController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -139,12 +141,14 @@
 		DED1E16626DC848500D50711 /* TestPopupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPopupController.swift; sourceTree = "<group>"; };
 		DED1E16826DDD31600D50711 /* TestRootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRootController.swift; sourceTree = "<group>"; };
 		DED1E16B26DDDBD500D50711 /* TestSlideController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSlideController.swift; sourceTree = "<group>"; };
+		DED1E17E26DF867900D50711 /* TestAlbumController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAlbumController.swift; sourceTree = "<group>"; };
 		DEE8828426AFDFE9005F5B3E /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		DEE8828626B0F394005F5B3E /* KnowledgeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowledgeController.swift; sourceTree = "<group>"; };
 		DEE8828826B104BD005F5B3E /* KnowledgeItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowledgeItemController.swift; sourceTree = "<group>"; };
 		DEE8828A26B107CC005F5B3E /* KnowledgeItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowledgeItemViewModel.swift; sourceTree = "<group>"; };
 		DEE8828C26B150AA005F5B3E /* SquareItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareItemController.swift; sourceTree = "<group>"; };
 		DEE8829026B15250005F5B3E /* SquareItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareItem.swift; sourceTree = "<group>"; };
+		DEEA298726E70F030078653D /* TestPasswordInputController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPasswordInputController.swift; sourceTree = "<group>"; };
 		FF41BB0F05DD43F925D74153 /* Pods_WanAndroid.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WanAndroid.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -520,6 +524,8 @@
 				DED1E16626DC848500D50711 /* TestPopupController.swift */,
 				DE84E54126D783830004AC1E /* TestOverlayController.swift */,
 				DED1E16B26DDDBD500D50711 /* TestSlideController.swift */,
+				DED1E17E26DF867900D50711 /* TestAlbumController.swift */,
+				DEEA298726E70F030078653D /* TestPasswordInputController.swift */,
 			);
 			path = Sub;
 			sourceTree = "<group>";
@@ -666,6 +672,7 @@
 				DEE8828B26B107CC005F5B3E /* KnowledgeItemViewModel.swift in Sources */,
 				DED1E16926DDD31600D50711 /* TestRootController.swift in Sources */,
 				DEC106DD26D34BAF001A4908 /* MineListViewModel.swift in Sources */,
+				DEEA298826E70F030078653D /* TestPasswordInputController.swift in Sources */,
 				DEC106C326CCFB55001A4908 /* UIImage+.swift in Sources */,
 				DE287B42269D3D260096736A /* HomeViewModel.swift in Sources */,
 				DE287B30269C13EA0096736A /* Article.swift in Sources */,
@@ -702,6 +709,7 @@
 				DEB8186B26A18B9F002FB89F /* ArticleCell.swift in Sources */,
 				DEB8187426A19DFD002FB89F /* WechatViewModel.swift in Sources */,
 				DE287B37269C16CD0096736A /* Functions.swift in Sources */,
+				DED1E17F26DF867900D50711 /* TestAlbumController.swift in Sources */,
 				DE5C2C8E26A551F50045FBAC /* ProjectViewModel.swift in Sources */,
 				DE287ACA26943FC10096736A /* SceneDelegate.swift in Sources */,
 				DE5C2C8C26A551DB0045FBAC /* ProjectItemController.swift in Sources */,

@@ -13,3 +13,7 @@ var currentBundle: Bundle {
     let path = Bundle(for: BundleFetcher.self).path(forResource: "Commons", ofType: "bundle")!
     return Bundle(path: path)!
 }
+
+func getImage(named: String) -> UIImage? {
+    UIImage(named: named, in: currentBundle, compatibleWith: nil)
+}

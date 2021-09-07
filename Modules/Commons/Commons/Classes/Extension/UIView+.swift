@@ -137,4 +137,8 @@ public extension UIView {
         tap.numberOfTapsRequired = tapNumber
         addGestureRecognizer(tap)
     }
+
+    func removeAllGestureRecognizers() {
+        gestureRecognizers?.removeAll()
+    }
 }

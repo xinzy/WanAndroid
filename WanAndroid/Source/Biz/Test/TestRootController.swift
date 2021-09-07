@@ -17,7 +17,9 @@ class TestRootController: UIViewController {
 
     private let items: [(String, UIViewController.Type)] = [
         ("Popup", TestPopupController.self),
-        ("Slide", TestSlideController.self)
+        ("Slide", TestSlideController.self),
+        ("照片选择", TestAlbumController.self),
+        ("密码输入框", TestPasswordInputController.self)
     ]
 
     override func viewDidLoad() {

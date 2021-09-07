@@ -19,7 +19,15 @@ open class OverlayViewController: UIViewController {
 
     public var contentViewHorizontalPadding: CGFloat = horizontalPadding
     public let contentView: UIView = UIView()
-    public var dismissWhenTouchOutside: Bool = false
+    public var dismissWhenTouchOutside: Bool = false {
+        didSet {
+            if dismissWhenTouchOutside {
+                view.addTapGesture(self, #selector(dismissAction))
+            } else {
+                view.removeAllGestureRecognizers()
+            }
+        }
+    }
     public var updateFrameWithKeyboard: Bool = true
 
     public var animationInType: AnimationInType {
@@ -57,7 +65,7 @@ open class OverlayViewController: UIViewController {
             make.trailing.equalTo(-contentViewHorizontalPadding)
             make.centerY.equalToSuperview()
         }
-        view.addTapGesture(self, #selector(onDismissClick))
+        contentView.addTapGesture(self, #selector(hideKeyboardIfNeed))
     }
     
     public func present(from parentController: UIViewController, animated: Bool = true, completion: (() -> Void)? = nil) {
@@ -67,9 +75,12 @@ open class OverlayViewController: UIViewController {
         controller.present(self, animated: true, completion: completion)
     }
 
-    @objc private func onDismissClick() {
-        view.endEditing(true)
+    @objc private func dismissAction() {
         if dismissWhenTouchOutside { dismiss(animated: true) }
+    }
+
+    @objc private func hideKeyboardIfNeed() {
+        view.endEditing(true)
     }
 
     private lazy var overlayAnimator: OverlayAnimator = {
