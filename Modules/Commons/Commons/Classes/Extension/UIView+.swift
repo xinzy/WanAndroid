@@ -141,4 +141,12 @@ public extension UIView {
     func removeAllGestureRecognizers() {
         gestureRecognizers?.removeAll()
     }
+
+    func setContentHuggingPriority(priority: Float, for axis: NSLayoutConstraint.Axis) {
+        setContentHuggingPriority(UILayoutPriority(priority), for: axis)
+    }
+
+    func setContentCompressionResistancePriority(priority: Float, for axis: NSLayoutConstraint.Axis) {
+        setContentCompressionResistancePriority(UILayoutPriority(priority), for: axis)
+    }
 }

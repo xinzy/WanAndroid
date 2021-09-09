@@ -52,6 +52,8 @@ extension HomeViewController {
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: .iconSearch, style: .plain, target: self, action: #selector(search))
     }
 
     private func bindAction() {
@@ -64,6 +66,10 @@ extension HomeViewController {
             self.tableView.reloadData()
             self.tableView.endLoadMore(result.isEnd)
         }.disposed(by: disposeBag)
+    }
+
+    @objc private func search() {
+        SearchController.showController(from: self)
     }
 
     @objc private func refresh() {

@@ -10,7 +10,7 @@ import UIKit
 public extension UIButton {
 
     enum ImagePosition {
-        case leading, top, trailing, bottom
+        case left, top, right, bottom
     }
 
     var titleFont: UIFont? {
@@ -23,11 +23,11 @@ public extension UIButton {
         guard let titleSize = currentTitle?.size(titleLabel?.font ?? .systemFont(ofSize: 17)) else { return }
 
         switch position {
-        case .leading:
+        case .left:
             imageEdgeInsets = UIEdgeInsets(top: 0, left: -spacing / 2, bottom: 0, right: spacing / 2)
             titleEdgeInsets = UIEdgeInsets(top: 0, left: spacing / 2, bottom: 0, right: -spacing / 2)
             contentEdgeInsets = UIEdgeInsets(top: 0, left: spacing / 2 + padding, bottom: 0, right: spacing / 2 + padding)
-        case .trailing:
+        case .right:
             imageEdgeInsets = UIEdgeInsets(top: 0, left: titleSize.width + spacing / 2, bottom: 0, right: -titleSize.width - spacing / 2)
             titleEdgeInsets = UIEdgeInsets(top: 0, left: -imageSize.width - spacing / 2, bottom: 0, right: imageSize.width + spacing / 2)
             contentEdgeInsets = UIEdgeInsets(top: 0, left: spacing / 2 + padding, bottom: 0, right: spacing / 2 + padding)
@@ -66,5 +66,9 @@ public extension UIButton {
                                            bottom: imageSize.height / 2 + spacing / 2,
                                            right: imageSize.width / 2)
         }
+    }
+
+    func setBackgroundColor(_ color: UIColor, for state: State) {
+        setBackgroundImage(color.toImage(), for: state)
     }
 }

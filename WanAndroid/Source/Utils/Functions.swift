@@ -28,6 +28,7 @@ func filterHtmlTag(_ input: String) -> String {
         "&trade;" : "™",
         "&times;" : "×",
         "&divide;" : "÷",
+        "&middot;" : "·"
     ]
     return input.replaceAll(dict)
 }

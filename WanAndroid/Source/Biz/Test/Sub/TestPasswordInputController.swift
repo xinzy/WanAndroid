@@ -30,6 +30,10 @@ class TestPasswordInputController: UIViewController {
         }
     }
 
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
+    }
 
     private lazy var input1: PasswordInputView = {
         let view = PasswordInputView()

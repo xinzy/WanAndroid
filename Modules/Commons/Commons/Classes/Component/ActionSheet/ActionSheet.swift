@@ -199,7 +199,7 @@ public class ActionSheetHeader: UIView {
     private let dividerView = UIView().then { $0.backgroundColor = Colors.separator }
 }
 
-fileprivate class ActionSheetItemView: UIControl {
+fileprivate class ActionSheetItemView: UIView {
     private let actionSheetItem: ActionSheetItem
     private let showDivider: Bool
 
@@ -213,50 +213,36 @@ fileprivate class ActionSheetItemView: UIControl {
         setupView()
     }
 
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        backgroundColor = Colors.separator
-    }
-
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesEnded(touches, with: event)
-        backgroundColor = .clear
-    }
-
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesCancelled(touches, with: event)
-        backgroundColor = .clear
-    }
-
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     private func setupView() {
         backgroundColor = Colors.backgroundPrimary
-        addSubview(label)
+        addSubview(contentButton)
 
         if showDivider {
             dividerView.frame = CGRect(x: 0, y: frame.height - 1, width: frame.width, height: 1)
             addSubview(dividerView)
         }
-
-        addTarget(self, action: #selector(onClick), for: .touchUpInside)
+        contentButton.addTarget(self, action: #selector(onClick(_:)), for: .touchUpInside)
     }
 
-    @objc private func onClick() {
+    @objc private func onClick(_ sender: UIControl) {
         actionSheetItem.handler?()
         actionSheetController?.dismiss(animated: true)
     }
 
-    private lazy var label: UILabel = {
-        let label = UILabel(frame: self.bounds)
-        label.textColor = actionSheetItem.textColor
-        label.text = actionSheetItem.title
-        label.font = actionSheetItem.font
-        label.textAlignment = .center
-        return label
+    private lazy var contentButton: UIButton = {
+        let button = UIButton(frame: self.bounds)
+        button.setTitleColor(actionSheetItem.textColor, for: .normal)
+        button.setTitle(actionSheetItem.title, for: .normal)
+        button.titleFont = actionSheetItem.font
+        button.setBackgroundColor(.clear, for: .normal)
+        button.setBackgroundColor(Colors.separator, for: .highlighted)
+        return button
     }()
+    
     private let dividerView: UIView = UIView().then { $0.backgroundColor = Colors.separator }
 }
 

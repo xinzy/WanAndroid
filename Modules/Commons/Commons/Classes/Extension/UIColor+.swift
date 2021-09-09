@@ -30,14 +30,17 @@ public extension UIColor {
         self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
     }
 
-    func image(size: CGSize = .zero) -> UIImage {
+    func toImage(size: CGSize = .zero) -> UIImage? {
         let rect = CGRect(x: 0, y: 0, width: size.width == 0 ? 1 : size.width, height: size.height == 0 ? 1 : size.height)
         UIGraphicsBeginImageContext(rect.size)
-        let context = UIGraphicsGetCurrentContext()
-        context!.setFillColor(self.cgColor)
-        context!.fill(rect)
+        guard let context = UIGraphicsGetCurrentContext() else {
+            UIGraphicsEndImageContext()
+            return nil
+        }
+        context.setFillColor(cgColor)
+        context.fill(rect)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return image!
+        return image
     }
 }

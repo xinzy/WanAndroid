@@ -25,6 +25,8 @@ public extension UIImage {
 
     static var iconFavored: UIImage { imageOf("ic_favored") }
 
+    static var iconSearch: UIImage { imageOf("ic_search") }
+
     static var placeholder: UIImage { imageOf("placeholder") }
 
     static var iconPasswordHidden: UIImage { imageOf("icon_passwd_invisible") }

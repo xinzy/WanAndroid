@@ -18,7 +18,7 @@ public class ThemeManager {
         get { UserDefaults.standard.value(forKey: Self.keyUseSystemTheme) as? Bool ?? true }
         set {
             UserDefaults.standard.setValue(newValue, forKey: Self.keyUseSystemTheme)
-            UIApplication.shared.keyWindow?.overrideUserInterfaceStyle = newValue ? .unspecified : currentTheme
+            changeThemeWithAnimation(newValue ? .unspecified : currentTheme)
         }
     }
 
@@ -33,6 +33,13 @@ public class ThemeManager {
     public func setTheme(_ style: UIUserInterfaceStyle) {
         if currentTheme == style { return }
         UserDefaults.standard.setValue(style.rawValue, forKey: Self.keyThemeMode)
-        UIApplication.shared.keyWindow?.overrideUserInterfaceStyle = style
+        changeThemeWithAnimation(style)
+    }
+
+    private func changeThemeWithAnimation(_ style: UIUserInterfaceStyle) {
+        guard let window = UIApplication.shared.keyWindow else { return }
+        UIView.transition(with: window, duration: animationDuration, options: .transitionCrossDissolve) {
+            window.overrideUserInterfaceStyle = style
+        }
     }
 }
